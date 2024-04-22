@@ -1,6 +1,5 @@
 const isIntStr = (numStr: string): boolean => {
-  for (let i = 0; i < numStr.length; i++) {
-    const current: string = numStr[i];
+  for (const current of numStr) {
     if (
       current !== '0' &&
       current !== '1' &&
@@ -22,7 +21,7 @@ const isIntStr = (numStr: string): boolean => {
 const getKeys = (str: string): string[] => {
   const keys = [];
   let startIndex = -1;
-  for (let i = 1; i < str.length; i ++) {
+  for (let i = 1; i < str.length; i++) {
     if (str[i] === '[' && startIndex === -1) {
       startIndex = i;
     }
@@ -34,7 +33,7 @@ const getKeys = (str: string): string[] => {
     }
   }
   return keys;
-}
+};
 
 export const transform = (value: Record<string, any>): Record<string, any> => {
   if (!value) {
@@ -64,7 +63,7 @@ export const transform = (value: Record<string, any>): Record<string, any> => {
     currentKeys.forEach(item => {
       const isNumberKey = isIntStr(item);
       if (!currentObj[lastKey]) {
-        currentObj[lastKey] = isNumberKey ? [] : {}
+        currentObj[lastKey] = isNumberKey ? [] : {};
       }
       currentObj = currentObj[lastKey];
       lastKey = item;
